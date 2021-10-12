@@ -34,10 +34,118 @@ const startQuestions = () => {
             type: 'list',
             name: 'otherMembers',
             message: 'Do you want to add an engineer or an intern?',
-            choices: ['Engineer', 'Intern'],
+            choices: ['Engineer', 'Intern', 'None'],
         }
     ])
+    .then((managerProfile) => {
+        const manager = new Manager(managerProfile.name, managerProfile.id, managerProfile.email, managerProfile.officeNumber);
+        switch(managerProfile.otherMembers){
+            case 'Engineer':
+                engineerPrompt();
+                break;
+            case 'Intern':
+                internPrompt();
+                break;
+            case 'None':
+                return '';
+                break;
+        }
+        // console.log(managerProfile);
+    })
 }
+
+
+// Adding qustions for engineer switch
+const engineerPrompt = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message:'What\'s the engineer\'s name?',
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message:'What\'s the engineer\'s employee id number?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message:'What\'s the engineer\'s email address?',
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message:'What\'s the engineer\'s Github account?',
+        },
+        {
+            type: 'list',
+            name: 'otherMembers',
+            message: 'Do you want to add an engineer or an intern?',
+            choices: ['Engineer', 'Intern', 'None'],
+        }
+    ])
+    .then((engineerProfile) => {
+        const engineer = new Engineer(engineerProfile.id, engineerProfile.name, engineerProfile.email, engineerProfile.github)
+        switch(engineerProfile.otherMembers) {
+            case 'Engineer':
+                engineerPrompt();
+                break;
+            case 'Intern':
+                internPrompt();
+                break;
+            case 'None':
+                return '';
+                break;
+        }
+    })
+};
+
+// adding questions for intern switch
+const internPrompt = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message:'What\'s the intern\'s name?',
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message:'What\'s the intern\'s id number?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message:'What\'s the intern\'s email address?',
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message:'What school does the intern attend?',
+        },
+        {
+            type: 'list',
+            name: 'otherMembers',
+            message: 'Do you want to add an engineer or an intern?',
+            choices: ['Engineer', 'Intern', 'None'],
+        }
+    ])
+    .then((internProfile) => {
+        const intern = new Intern(internProfile.id, internProfile.name, internProfile.email, internProfile.school)
+        switch(internProfile.otherMembers){
+            case 'Engineer':
+                engineerPrompt();
+                break;
+            case 'Intern':
+                internPrompt();
+                break;
+            default:
+        }
+    })
+}
+
+startQuestions();
 
 // GIVEN a command-line application that accepts user input
 // WHEN I am prompted for my team members and their information
