@@ -1,5 +1,43 @@
 
+const inquirer = require('inquirer');
 
+// requiring classes for these roles
+const Manager = require('./manager');
+const Engineer = require('./engineer');
+const Intern = require('./intern');
+teamMembers = [];
+
+
+const startQuestions = () => {
+    inquirer.prompt([
+        {
+            type:'input',
+            name:'name',
+            message:'What\'s the manager\'s name?',
+        },
+        {
+            type:'input',
+            name:'id',
+            message:'What\s the manager\'s employee id?',
+        },
+        {
+            type:'input',
+            name:'email',
+            message:'What\s the manager\'s email address?',
+        },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message:'What\s the manager\'s office number?',
+        },
+        {
+            type: 'list',
+            name: 'otherMembers',
+            message: 'Do you want to add an engineer or an intern?',
+            choices: ['Engineer', 'Intern'],
+        }
+    ])
+}
 
 // GIVEN a command-line application that accepts user input
 // WHEN I am prompted for my team members and their information
