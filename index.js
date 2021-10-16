@@ -4,9 +4,9 @@ const fs = require('fs');
 const generateHTML = require('./generateHTML');
 
 // requiring classes for these roles
-const Manager = require('./manager');
-const Engineer = require('./engineer');
-const Intern = require('./intern');
+const Manager = require('./lib/manager');
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern');
 teamMembers = [];
 
 
