@@ -1,11 +1,14 @@
 
 // classes for these roles
-const Manager = require('./manager');
-const Engineer = require('./engineer');
-const Intern = require('./intern');
+const Manager = require('./lib/manager');
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern');
 
 // function to make div with required info
 function makeCard(teamMembers) {
+  let memberInfo = []
+  for(let i = 0; i < teamMembers.length; i++) {
+    const teamList = teamMembers[i];
     // switch statement to jump between roles
     switch(teamList.getRole()) {
       case 'Manager':
@@ -25,6 +28,8 @@ function makeCard(teamMembers) {
         break;
     }
   }
+  return memberInfo.join(``)
+}
 
 
 // Here we generate HTML and grab data from MakeCard
